@@ -14,6 +14,8 @@ namespace Scout_Account_Tracker.Models
         [Key]
         public int ID { get; set; }
         [Required]
+        public string Name { get; set; }
+        [Required]
         public int Value { get; set; }
         [Required]
         public DateTime Date { get; set; }

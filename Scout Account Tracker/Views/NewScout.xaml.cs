@@ -42,6 +42,7 @@ namespace Scout_Account_Tracker
                 group = _context.groups.Where(x => x.Name.ToLower() == ScoutGroup.Text.ToLower()).ToArray();
             }
             await _context.Database.ExecuteSqlRawAsync($"Insert into dbo.scouts(Name,groupID,Spent,DOB) values('{ScoutName.Text}','{group[0].ID}','0','{dob.Month}/{dob.Day}/{dob.Year}');");
+            BtnReturn_click(this,e);
         }
         public void BtnReturn_click(object sender, RoutedEventArgs e)
         {

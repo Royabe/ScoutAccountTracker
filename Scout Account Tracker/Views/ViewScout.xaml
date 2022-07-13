@@ -6,7 +6,40 @@
         xmlns:local="clr-namespace:Scout_Account_Tracker"
         mc:Ignorable="d"
         Title="ViewScout" Height="450" Width="800">
-    <Grid>
-        
+    <Grid Style="{StaticResource WinStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3"/>
+            <RowDefinition/>
+            <RowDefinition Height="7.5*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="1.5*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" Fill="AliceBlue"/>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Style="{StaticResource TitleText}">Edit Scout</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource SmallText}">Scout Name</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="2" Style="{StaticResource SmallText}">Scout Group</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="4" Style="{StaticResource SmallText}">Scout DOB</TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="1" Style="{StaticResource InputBox}"></TextBox>
+        <TextBox Grid.Row="2" Grid.Column="3" Style="{StaticResource InputBox}"></TextBox>
+        <TextBox Grid.Row="2" Grid.Column="5" Style="{StaticResource InputBox}"></TextBox>
+        <DataGrid Name="DGevents" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="6" Style="{StaticResource DGstyle}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Event Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Start Time" Binding="{Binding Start}"/>
+                <DataGridTextColumn Header="End Time" Binding="{Binding End}"/>
+                <DataGridTextColumn Header="Date" Binding="{Binding Date}"/>
+                <DataGridTextColumn Header="Amount Earned/Spent" Binding="{Binding Earned}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Grid.Column="0" Grid.Row="4"  Style="{StaticResource SmallBtn}">Add Expenditure</Button>
+        <Button Grid.Column="5" Grid.Row="4" Style="{StaticResource BtnReturn}">Return</Button>
     </Grid>
 </Window>

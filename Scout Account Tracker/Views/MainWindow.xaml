@@ -43,8 +43,7 @@
         <Rectangle Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5"
                    Fill="LightGray"></Rectangle>
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"
-                   Style="{StaticResource TitleText}"
-                   HorizontalAlignment="Center">
+                   Style="{StaticResource TitleText}">
             Scout Account Tracker
         </TextBlock>
         <TextBlock Grid.Row="2" Grid.Column="0"
@@ -65,7 +64,7 @@
         <Button Grid.Row="3" Grid.Column="4"
                 Style="{StaticResource SmallBtn}"
                 ButtonBase.Click="EditOrg_Click">View Organisers</Button>
-        <FlowDocumentReader Grid.Column="0" Grid.Row="4">
+        <FlowDocumentScrollViewer Grid.Column="0" Grid.Row="4" ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <FlowDocument>
                 <Paragraph Style="{StaticResource TableText}">
                     Add Scouts
@@ -77,8 +76,8 @@
                     View Scout Expenditure
                 </Paragraph>
             </FlowDocument>
-        </FlowDocumentReader>
-        <FlowDocumentReader Grid.Column="2" Grid.Row="4">
+        </FlowDocumentScrollViewer>
+        <FlowDocumentScrollViewer Grid.Column="2" Grid.Row="4" ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <FlowDocument>
                 <Paragraph Style="{StaticResource TableText}">
                     Add Events
@@ -90,8 +89,8 @@
                     View Event Revenue
                 </Paragraph>
             </FlowDocument>
-        </FlowDocumentReader>
-        <FlowDocumentReader Grid.Column="4" Grid.Row="4">
+        </FlowDocumentScrollViewer>
+        <FlowDocumentScrollViewer Grid.Column="4" Grid.Row="4" ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <FlowDocument>
                 <Paragraph Style="{StaticResource TableText}">
                     Add Organisers
@@ -103,7 +102,7 @@
                     View Organiser Payments
                 </Paragraph>
             </FlowDocument>
-        </FlowDocumentReader>
+        </FlowDocumentScrollViewer>
     </Grid>
 
 </Window>

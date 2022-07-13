@@ -35,5 +35,15 @@ namespace Scout_Account_Tracker.Models
             Spent = spent;
             DOB = dOB;
         }
+        public int getAge(DateTime Date)
+        {
+            int age = (Date.Year - DOB.Year);
+            DateTime Thisyear = new DateTime(Date.Year, DOB.Month, DOB.Day);
+            if (Date > Thisyear)
+            {
+                age -= 1;
+            }
+            return age;
+        }
     }
 }

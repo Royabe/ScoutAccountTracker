@@ -50,7 +50,7 @@ namespace Scout_Account_Tracker
             {
                 var payrate = await _context.payRate
                     .Where(x => x.Date.Year == i.Start.Year)
-                    .Where(x => x.Age == (int)(i.Start.Year - scout.DOB.Year))
+                    .Where(x => x.Age == scout.getAge(i.Start))
                     .Select(x => x.Rate).ToArrayAsync();
                 int duration = (i.End - i.Start).Seconds;
                 balance += duration * payrate[0] / 3600;
@@ -61,15 +61,25 @@ namespace Scout_Account_Tracker
         {
             NewScout newScout = new NewScout();
             newScout.Show();
-            this.Close();
+        }
+        private void btnViewScout_click(object sender, RoutedEventArgs e)
+        {
+            ViewScout viewScout = new ViewScout(scoutlist.ToList()[DGscout.SelectedIndex]);
+            viewScout.Show();
+        }
+        private void btnReturn_click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new();
+            mainWindow.Show();
+            Close();
         }
     }
     public class scoutdata
     {
-        public string Name;
-        public string Group;
-        public float Bal;
-        public float Bal31;
+        public string Name { get; set; }
+        public string Group { get; set; }
+        public float Bal { get; set; }
+        public float Bal31 { get; set; }
         public scoutdata(string name, string group, float bal, float bal31)
         {
             Name = name;

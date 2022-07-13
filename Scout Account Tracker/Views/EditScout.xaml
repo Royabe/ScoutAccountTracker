@@ -17,12 +17,12 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Style="{StaticResource TitleText}">Scouts</TextBlock>
         <Rectangle Grid.Row="1" Fill="LightGray"></Rectangle>
-        <DataGrid Grid.Row="2" Name="DGscout" ItemsSource="{Binding}" Style="{StaticResource DGstyle}">
+        <DataGrid Grid.Row="2" Name="DGscout" Style="{StaticResource DGstyle}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" x:Name="DGSname" Binding="{Binding Names}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Group" x:Name="DGSgroup" Binding="{Binding Groups}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Balance" x:Name="DGSbal" Binding="{Binding Balance}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Balance 31st" x:Name="DGSbal31" Binding="{Binding Balance31}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Name" x:Name="DGSname" Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Group" x:Name="DGSgroup" Binding="{Binding Group}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Balance" x:Name="DGSbal" Binding="{Binding Bal}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Balance 31st" x:Name="DGSbal31" Binding="{Binding Bal31}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
         <Grid Grid.Row="3">
@@ -30,12 +30,10 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Style="{StaticResource SmallBtn}" ButtonBase.Click="btnAddScout_click">Add Scout</Button>
-            <Button Grid.Column="1" Style="{StaticResource SmallBtn}">Edit Scout</Button>
-            <Button Grid.Column="2" Style="{StaticResource SmallBtn}">View Scout</Button>
-            <Button Grid.Column="3" Style="{StaticResource BtnReturn}">Return</Button>
+            <Button Grid.Column="1" Style="{StaticResource SmallBtn}" x:Name="btnView" ButtonBase.Click="btnViewScout_click">Edit Scout</Button>
+            <Button Grid.Column="2" Style="{StaticResource BtnReturn}" ButtonBase.Click="btnReturn_click">Return</Button>
         </Grid>
     </Grid>
 </Window>
