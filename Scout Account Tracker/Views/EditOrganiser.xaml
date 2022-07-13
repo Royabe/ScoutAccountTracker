@@ -1,0 +1,68 @@
+﻿<Window x:Class="Scout_Account_Tracker.EditOrganiser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Scout_Account_Tracker"
+        mc:Ignorable="d"
+        Title="EditOrganiser" Height="450" Width="800">
+    <Grid Style="{StaticResource WinStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition><!--Title Row-->
+            <RowDefinition Height="3"></RowDefinition><!--Separator-->
+            <RowDefinition Height="8*"></RowDefinition><!--Content-->
+            <RowDefinition Height="*"></RowDefinition><!--Buttons-->
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Style="{StaticResource TitleText}">Edit Organiser</TextBlock>
+        <Rectangle Grid.Row="1" Fill="LightGray"></Rectangle>
+        <FlowDocumentScrollViewer Grid.Row="2">
+            <FlowDocument Name="DocOrg">
+                <Table Name="TabOrg">
+                    <Table.Columns>
+                        <TableColumn/>
+                        <TableColumn/>
+                        <TableColumn/>
+                        <TableColumn/>
+                    </Table.Columns>
+                    <TableRowGroup>
+                        <TableRow>
+                            <TableCell>
+                                <Paragraph Style="{StaticResource TableTitle}">
+                                    Name
+                                </Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph Style="{StaticResource TableTitle}">
+                                    Total Revenue
+                                </Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph Style="{StaticResource TableTitle}">
+                                    Balance Due
+                                </Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph Style="{StaticResource TableTitle}">
+                                    Balance Due (March 31st)
+                                </Paragraph>
+                            </TableCell>
+                        </TableRow>
+                    </TableRowGroup>
+                </Table>
+            </FlowDocument>
+        </FlowDocumentScrollViewer>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Style="{StaticResource SmallBtn}">Edit Organiser</Button>
+            <Button Grid.Column="1" Style="{StaticResource SmallBtn}">New Bill</Button>
+            <Button Grid.Column="2" Style="{StaticResource SmallBtn}">View Bills</Button>
+            <Button Grid.Column="3" Style="{StaticResource BtnReturn}">Return</Button>
+        </Grid>
+        
+    </Grid>
+</Window>

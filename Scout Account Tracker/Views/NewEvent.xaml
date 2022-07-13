@@ -1,0 +1,55 @@
+﻿<Window x:Class="Scout_Account_Tracker.NewEvent"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Scout_Account_Tracker"
+        mc:Ignorable="d"
+        Title="EditEvent" Height="450" Width="500">
+    <Grid Style="{StaticResource WinStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <!--Title row-->
+            <RowDefinition Height="3"></RowDefinition>
+            <!--Bar row-->
+            <RowDefinition Height="10*"></RowDefinition>
+            <!--Data row-->
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Style="{StaticResource TitleText}">New Event</TextBlock>
+        <Rectangle Grid.Row="1" Fill="LightGray"></Rectangle>
+        <Grid Grid.Row="2" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <!--Field Name Column-->
+                <ColumnDefinition></ColumnDefinition>
+                <!--Field Data Column-->
+                <ColumnDefinition></ColumnDefinition>
+                <!--Details Column-->
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource SmallText}">Event Name*</TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource SmallText}">Event Location*</TextBlock>
+            <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource SmallText}">Event Type</TextBlock>
+            <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource SmallText}">Event Start Time*</TextBlock>
+            <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource SmallText}">Event End Time*</TextBlock>
+            <TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource SmallText}">Event Organiser*</TextBlock>
+            <TextBox Style="{StaticResource InputBox}" Grid.Row="0" Grid.Column="1" Width="150"></TextBox>
+            <TextBox Style="{StaticResource InputBox}" Grid.Row="1" Grid.Column="1"></TextBox>
+            <TextBox Style="{StaticResource InputBox}" Grid.Row="2" Grid.Column="1"></TextBox>
+            <TextBox Style="{StaticResource InputBox}" Grid.Row="3" Grid.Column="1"></TextBox>
+            <TextBox Style="{StaticResource InputBox}" Grid.Row="4" Grid.Column="1"></TextBox>
+            <TextBox Style="{StaticResource InputBox}" Grid.Row="5" Grid.Column="1"></TextBox>
+            <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource SmallText}" Foreground="Red" FontSize="12">* : Required</TextBlock>
+            <Button Style="{StaticResource SmallBtn}" Grid.Row="6" Grid.Column="1">Add New Scout</Button>
+            <Button Style="{StaticResource BtnReturn}" Grid.Row="6" Grid.Column="2">Return</Button>
+        </Grid>
+    </Grid>
+</Window>
