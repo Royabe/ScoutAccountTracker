@@ -28,7 +28,7 @@ namespace Scout_Account_Tracker
         public EditScout()
         {
             InitializeComponent();
-            DGscout.DataContext = scouts;
+            DGscout.ItemsSource = scouts;
         }
         public async void Window_Loaded(Object sender, EventArgs e)
         {
