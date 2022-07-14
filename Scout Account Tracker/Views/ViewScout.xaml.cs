@@ -27,26 +27,30 @@ namespace Scout_Account_Tracker
         IEnumerable<EventTime> eventlist;
         IEnumerable<Payment> paymlist;
         IEnumerable<PayRate> payRates;
+        Scout thisScout;
         
         public ViewScout(Scout scout)
         {
-            OnLoaded(scout);
+            thisScout = scout;
+            OnLoaded();
             InitializeComponent();
             if (ScoutRecords != null)
             {
                 ScoutRecords.OrderBy(x => x.Date);
             }
             DGevents.ItemsSource = ScoutRecords;
+            SName.Text = scout.Name;
+            SGroup.Text = scout.group.Name;
+            SDOB.Text = scout.DOB.ToShortDateString();
         }
-        public async void OnLoaded(Scout scout)
+        public async void OnLoaded()
         {
             eventlist = await _context.eventsTime
-                .Where(x=>x.scout.ID == scout.ID).ToListAsync();
+                .Where(x=>x.scout.ID == thisScout.ID).ToListAsync();
             paymlist = await _context.payment
                 .Where(x => x.scout != null)
-                .Where(x => x.scout.ID == scout.ID).ToListAsync();
-            payRates = await _context.payRate
-                .Where(x=>x.Age < scout.getAge(DateTime.Now)+1).ToListAsync();
+                .Where(x => x.scout.ID == thisScout.ID).ToListAsync();
+            payRates = await _context.payRate.ToListAsync();
             foreach(EventTime i in eventlist)
             {
                 ScoutRecords.Add(new paymentrecord(i.SpEvent.Name, i.Start, i.End, i.Start, calcRevenue(i)));
@@ -71,6 +75,29 @@ namespace Scout_Account_Tracker
                 return 0;
             }
             
+        }
+        public void BtnExpense_click(object sender, EventArgs e) 
+        {
+            
+        }
+        public void BtnDelete_click(object sender, EventArgs e) 
+        {
+            _context.Remove(thisScout);
+            _context.SaveChanges();
+            EditScout editScout = new();
+            editScout.Show();
+            Close();
+        }
+        public void BtnReturn_click(object sender, EventArgs e) 
+        {
+            thisScout.Name = SName.Text;
+            thisScout.group = _context.groups.FirstOrDefault(x=> x.Name == SGroup.Text);
+            thisScout.DOB = DateTime.Parse(SDOB.Text);
+            _context.Update(thisScout);
+            _context.SaveChanges();
+            EditScout editScout = new();
+            editScout.Show();
+            Close();
         }
     }
     public class paymentrecord

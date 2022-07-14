@@ -6,7 +6,35 @@
         xmlns:local="clr-namespace:Scout_Account_Tracker"
         mc:Ignorable="d"
         Title="ViewOrganiser" Height="450" Width="800">
-    <Grid>
-        
+    <Grid Style="{StaticResource WinStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3"/>
+            <RowDefinition/>
+            <RowDefinition Height="7.5*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Fill="AliceBlue"/>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource TitleText}">Edit Organiser</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource SmallText}">Scout Name</TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="1" Name="OName" Style="{StaticResource InputBox}"></TextBox>
+        <DataGrid Name="DGBills" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="6" Style="{StaticResource DGstyle}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Bill Date" Binding="{Binding Date}"/>
+                <DataGridTextColumn Header="Bill Value" Binding="{Binding Value}"/>
+                <DataGridTextColumn Header="Bill Status" Binding="{Binding Status}"/>
+                <DataGridTextColumn Header="Total Paid" Binding="{Binding Paid}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource SmallBtn}" ButtonBase.Click="BtnPayments_click">Add Payment</Button>
+        <Button Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource SmallBtn}" ButtonBase.Click="BtnDelete_click">Delete Organiser</Button>
+        <Button Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource SmallBtn}" ButtonBase.Click="BtnDeleteBill_click">Delete Bill</Button>
+        <Button Grid.Column="3" Grid.Row="4" Style="{StaticResource BtnReturn}" ButtonBase.Click="BtnReturn_click">Return</Button>
     </Grid>
 </Window>

@@ -5,64 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Scout_Account_Tracker"
         mc:Ignorable="d"
+        Loaded="Window_Loaded"
         Title="EditOrganiser" Height="450" Width="800">
     <Grid Style="{StaticResource WinStyle}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition><!--Title Row-->
-            <RowDefinition Height="3"></RowDefinition><!--Separator-->
-            <RowDefinition Height="8*"></RowDefinition><!--Content-->
-            <RowDefinition Height="*"></RowDefinition><!--Buttons-->
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Style="{StaticResource TitleText}">Edit Organiser</TextBlock>
+        <TextBlock Grid.Row="0" Style="{StaticResource TitleText}">Scouts</TextBlock>
         <Rectangle Grid.Row="1" Fill="LightGray"></Rectangle>
-        <FlowDocumentScrollViewer Grid.Row="2">
-            <FlowDocument Name="DocOrg">
-                <Table Name="TabOrg">
-                    <Table.Columns>
-                        <TableColumn/>
-                        <TableColumn/>
-                        <TableColumn/>
-                        <TableColumn/>
-                    </Table.Columns>
-                    <TableRowGroup>
-                        <TableRow>
-                            <TableCell>
-                                <Paragraph Style="{StaticResource TableTitle}">
-                                    Name
-                                </Paragraph>
-                            </TableCell>
-                            <TableCell>
-                                <Paragraph Style="{StaticResource TableTitle}">
-                                    Total Revenue
-                                </Paragraph>
-                            </TableCell>
-                            <TableCell>
-                                <Paragraph Style="{StaticResource TableTitle}">
-                                    Balance Due
-                                </Paragraph>
-                            </TableCell>
-                            <TableCell>
-                                <Paragraph Style="{StaticResource TableTitle}">
-                                    Balance Due (March 31st)
-                                </Paragraph>
-                            </TableCell>
-                        </TableRow>
-                    </TableRowGroup>
-                </Table>
-            </FlowDocument>
-        </FlowDocumentScrollViewer>
+        <DataGrid Grid.Row="2" Name="DGOrg" Style="{StaticResource DGstyle}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" x:Name="DGOname" Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Total Revenue" x:Name="DGOrev" Binding="{Binding Rev}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Balance due" x:Name="DGObal" Binding="{Binding Bal}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Balance due 31st" x:Name="DGObal31" Binding="{Binding Bal31}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Style="{StaticResource SmallBtn}">Edit Organiser</Button>
-            <Button Grid.Column="1" Style="{StaticResource SmallBtn}">New Bill</Button>
-            <Button Grid.Column="2" Style="{StaticResource SmallBtn}">View Bills</Button>
-            <Button Grid.Column="3" Style="{StaticResource BtnReturn}">Return</Button>
+            <Button Grid.Column="0" Style="{StaticResource SmallBtn}" ButtonBase.Click="btnAddOrg_click">Add Organiser</Button>
+            <Button Grid.Column="1" Style="{StaticResource SmallBtn}" x:Name="btnView" ButtonBase.Click="btnViewOrg_click">Edit Organiser</Button>
+            <Button Grid.Column="2" Style="{StaticResource BtnReturn}" ButtonBase.Click="btnReturn_click">Return</Button>
         </Grid>
-        
     </Grid>
 </Window>

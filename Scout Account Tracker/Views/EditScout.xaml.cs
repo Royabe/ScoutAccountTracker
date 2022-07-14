@@ -61,11 +61,13 @@ namespace Scout_Account_Tracker
         {
             NewScout newScout = new NewScout();
             newScout.Show();
+            Close();
         }
         private void btnViewScout_click(object sender, RoutedEventArgs e)
         {
             ViewScout viewScout = new ViewScout(scoutlist.ToList()[DGscout.SelectedIndex]);
             viewScout.Show();
+            Close();
         }
         private void btnReturn_click(object sender, RoutedEventArgs e)
         {
