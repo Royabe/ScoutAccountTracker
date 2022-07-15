@@ -68,7 +68,8 @@ namespace Scout_Account_Tracker
         }
         public void BtnAddScout_click(object sender, EventArgs e)
         {
-            
+            Views.AddScout addScout = new(thisEvent);
+            addScout.Show();
         }
         public void BtnDelete_click(object sender, EventArgs e)
         {
