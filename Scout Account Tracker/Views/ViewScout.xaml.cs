@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.EntityFrameworkCore;
 using Scout_Account_Tracker.Models;
+using Scout_Account_Tracker.Views;
 
 namespace Scout_Account_Tracker
 {
@@ -23,7 +24,7 @@ namespace Scout_Account_Tracker
     public partial class ViewScout : Window
     {
         private readonly ScoutDBContext _context = new(options:new());
-        public ObservableCollection<paymentrecord> ScoutRecords { get; set; }
+        public ObservableCollection<paymentrecord> ScoutRecords = new();
         IEnumerable<EventTime> eventlist;
         IEnumerable<Payment> paymlist;
         IEnumerable<PayRate> payRates;
@@ -53,11 +54,11 @@ namespace Scout_Account_Tracker
             payRates = await _context.payRate.ToListAsync();
             foreach(EventTime i in eventlist)
             {
-                ScoutRecords.Add(new paymentrecord(i.SpEvent.Name, i.Start, i.End, i.Start, calcRevenue(i)));
+                ScoutRecords.Add(new paymentrecord(i.SpEvent.Name, i.Start, i.End, DateOnly.FromDateTime(i.Start), calcRevenue(i)));
             }
             foreach (Payment i in paymlist)
             {
-                ScoutRecords.Add(new paymentrecord(i.Name, null, null, i.Date, -1*i.Value));
+                ScoutRecords.Add(new paymentrecord(i.Name, null, null, DateOnly.FromDateTime(i.Date), -1*i.Value));
             }
         }
         public float calcRevenue(EventTime et)
@@ -78,7 +79,8 @@ namespace Scout_Account_Tracker
         }
         public void BtnExpense_click(object sender, EventArgs e) 
         {
-            
+            Expense expense = new(thisScout);
+            expense.Show();
         }
         public void BtnDelete_click(object sender, EventArgs e) 
         {
@@ -93,6 +95,12 @@ namespace Scout_Account_Tracker
             thisScout.Name = SName.Text;
             thisScout.group = _context.groups.FirstOrDefault(x=> x.Name == SGroup.Text);
             thisScout.DOB = DateTime.Parse(SDOB.Text);
+            int spent = 0;
+            foreach(Payment i in paymlist)
+            {
+                spent += i.Value;
+            }
+            thisScout.Spent = spent;
             _context.Update(thisScout);
             _context.SaveChanges();
             EditScout editScout = new();
@@ -105,10 +113,10 @@ namespace Scout_Account_Tracker
         public string Name { get; set; }
         public DateTime? Start { get; set; }
         public DateTime? End { get; set; }
-        public DateTime Date { get; set; }
+        public DateOnly Date { get; set; }
         public float Earned { get; set; }
 
-        public paymentrecord(string name, DateTime? start, DateTime? end, DateTime date, float earned)
+        public paymentrecord(string name, DateTime? start, DateTime? end, DateOnly date, float earned)
         {
             Name = name;
             Start = start;

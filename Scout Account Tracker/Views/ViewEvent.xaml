@@ -6,7 +6,47 @@
         xmlns:local="clr-namespace:Scout_Account_Tracker"
         mc:Ignorable="d"
         Title="ViewEvent" Height="450" Width="800">
-    <Grid>
-        
+    <Grid Style="{StaticResource WinStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="7.5*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="1.5*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" Fill="AliceBlue"/>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Style="{StaticResource TitleText}">Edit Event</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource SmallText}">Event Name</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="2" Style="{StaticResource SmallText}">Event Location</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="4" Style="{StaticResource SmallText}">Event Type</TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource SmallText}">Event Start</TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="2" Style="{StaticResource SmallText}">Event End</TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="4" Style="{StaticResource SmallText}">Event Organiser</TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="1" Name="EName" Style="{StaticResource InputBox}"></TextBox>
+        <TextBox Grid.Row="2" Grid.Column="3" Name="ELoc" Style="{StaticResource InputBox}"></TextBox>
+        <TextBox Grid.Row="2" Grid.Column="5" Name="EType" Style="{StaticResource InputBox}"></TextBox>
+        <TextBox Grid.Row="3" Grid.Column="1" Name="EStart" Style="{StaticResource InputBox}"></TextBox>
+        <TextBox Grid.Row="3" Grid.Column="3" Name="EEnd" Style="{StaticResource InputBox}"></TextBox>
+        <TextBox Grid.Row="3" Grid.Column="5" Name="EOrg" Style="{StaticResource InputBox}"></TextBox>
+        <DataGrid Name="DGevents" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="6" Style="{StaticResource DGstyle}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Scout Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Start Time" Binding="{Binding Start}"/>
+                <DataGridTextColumn Header="End Time" Binding="{Binding End}"/>
+                <DataGridTextColumn Header="Amount Earned" Binding="{Binding Earned}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="1" Style="{StaticResource SmallBtn}" ButtonBase.Click="BtnAddScout_click">Add Scout</Button>
+        <Button Grid.Column="3" Grid.Row="5" Grid.ColumnSpan="1" Style="{StaticResource SmallBtn}" ButtonBase.Click="BtnDelete_click">Delete Event</Button>
+        <Button Grid.Column="5" Grid.Row="5" Style="{StaticResource BtnReturn}" ButtonBase.Click="BtnReturn_click">Return</Button>
     </Grid>
 </Window>

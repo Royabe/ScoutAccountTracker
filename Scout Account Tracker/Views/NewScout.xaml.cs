@@ -48,7 +48,7 @@ namespace Scout_Account_Tracker
         {
             EditScout editScout = new EditScout();
             editScout.Show();
-            this.Close();
+            Close();
         }
     }
 }

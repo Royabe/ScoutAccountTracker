@@ -23,7 +23,7 @@ namespace Scout_Account_Tracker
     public partial class ViewOrganiser : Window
     {
         private readonly ScoutDBContext _context = new(options: new());
-        public ObservableCollection<BillRecord> BillRecords { get; set; }
+        public ObservableCollection<BillRecord> BillRecords = new();
         IEnumerable<Bill> bills;
         IEnumerable<Payment> paymlist;
         Organiser thisOrg;
@@ -49,7 +49,7 @@ namespace Scout_Account_Tracker
                 .Where(x => x.bill.Org.ID == thisOrg.ID).ToListAsync();
             foreach (Bill i in bills)
             {
-                BillRecords.Add(new BillRecord(i.Date,i.Value,i.Status,TotalPaid(paymlist)));
+                BillRecords.Add(new BillRecord(DateOnly.FromDateTime(i.Date),i.Value,i.Status,TotalPaid(paymlist)));
             }
         }
         public float TotalPaid(IEnumerable<Payment> paymlist)
@@ -61,9 +61,16 @@ namespace Scout_Account_Tracker
             }
             return val;
         }
+        public void BtnAddBill_click(object sender, EventArgs e)
+        {
+            Views.NewBill newbill = new(thisOrg);
+            newbill.Show();
+        }
         public void BtnPayments_click(object sender, EventArgs e)
         {
-
+            Views.Payments payments = new(bills.ToList()[DGBills.SelectedIndex]);
+            payments.Show();
+            Close();
         }
         public void BtnDelete_click(object sender, EventArgs e)
         {
@@ -75,9 +82,9 @@ namespace Scout_Account_Tracker
         }
         public void BtnDeleteBill_click(object sender, RoutedEventArgs e)
         {
-            _context.Remove(DGBills.CurrentItem);
+            _context.Remove(bills.ToList()[DGBills.SelectedIndex]);
             _context.SaveChanges();
-            UpdateLayout();
+            DGBills.UpdateLayout();
         }
         public void BtnReturn_click(object sender, EventArgs e)
         {
@@ -91,12 +98,12 @@ namespace Scout_Account_Tracker
     }
     public class BillRecord
     {
-        public DateTime Date { get; set; }
+        public DateOnly Date { get; set; }
         public float Value { get; set; }
         public int Status { get; set; }
         public float Paid { get; set; }
 
-        public BillRecord(DateTime date, float value, int status, float paid)
+        public BillRecord(DateOnly date, float value, int status, float paid)
         {
             Date = date;
             Value = value;

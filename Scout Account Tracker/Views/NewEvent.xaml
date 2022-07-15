@@ -33,23 +33,26 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
+                <RowDefinition/>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource SmallText}">Event Name*</TextBlock>
             <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource SmallText}">Event Location*</TextBlock>
             <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource SmallText}">Event Type</TextBlock>
-            <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource SmallText}">Event Start Time*</TextBlock>
-            <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource SmallText}">Event End Time*</TextBlock>
-            <TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource SmallText}">Event Organiser*</TextBlock>
-            <TextBox Style="{StaticResource InputBox}" Grid.Row="0" Grid.Column="1" Width="150"></TextBox>
-            <TextBox Style="{StaticResource InputBox}" Grid.Row="1" Grid.Column="1"></TextBox>
-            <TextBox Style="{StaticResource InputBox}" Grid.Row="2" Grid.Column="1"></TextBox>
-            <TextBox Style="{StaticResource InputBox}" Grid.Row="3" Grid.Column="1"></TextBox>
-            <TextBox Style="{StaticResource InputBox}" Grid.Row="4" Grid.Column="1"></TextBox>
-            <TextBox Style="{StaticResource InputBox}" Grid.Row="5" Grid.Column="1"></TextBox>
+            <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource SmallText}">Event Date*</TextBlock>
+            <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource SmallText}">Event Start Time*</TextBlock>
+            <TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource SmallText}">Event End Time*</TextBlock>
+            <TextBlock Grid.Row="6" Grid.Column="0" Style="{StaticResource SmallText}">Event Organiser*</TextBlock>
+            <TextBox Style="{StaticResource InputBox}" Name="EName" Grid.Row="0" Grid.Column="1"></TextBox>
+            <TextBox Style="{StaticResource InputBox}" Name="ELoc" Grid.Row="1" Grid.Column="1"></TextBox>
+            <TextBox Style="{StaticResource InputBox}" Name="EType" Grid.Row="2" Grid.Column="1"></TextBox>
+            <TextBox Style="{StaticResource InputBox}" Name="EDate" Grid.Row="3" Grid.Column="1"></TextBox>
+            <TextBox Style="{StaticResource InputBox}" Name="EStart" Grid.Row="4" Grid.Column="1"></TextBox>
+            <TextBox Style="{StaticResource InputBox}" Name="EEnd" Grid.Row="5" Grid.Column="1"></TextBox>
+            <TextBox Style="{StaticResource InputBox}" Name="EOrg" Grid.Row="6" Grid.Column="1"></TextBox>
             <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource SmallText}" Foreground="Red" FontSize="12">* : Required</TextBlock>
-            <Button Style="{StaticResource SmallBtn}" Grid.Row="6" Grid.Column="1">Add New Scout</Button>
-            <Button Style="{StaticResource BtnReturn}" Grid.Row="6" Grid.Column="2">Return</Button>
+            <Button Style="{StaticResource SmallBtn}" Grid.Row="7" Grid.Column="1" ButtonBase.Click="BtnAddEvent_click">Add New Event</Button>
+            <Button Style="{StaticResource BtnReturn}" Grid.Row="7" Grid.Column="2" ButtonBase.Click="BtnReturn_click">Return</Button>
         </Grid>
     </Grid>
 </Window>

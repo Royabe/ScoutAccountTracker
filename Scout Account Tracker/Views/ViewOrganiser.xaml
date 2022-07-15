@@ -20,10 +20,11 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <Rectangle Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Fill="AliceBlue"/>
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource TitleText}">Edit Organiser</TextBlock>
+        <Rectangle Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Fill="AliceBlue"/>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Style="{StaticResource TitleText}">Edit Organiser</TextBlock>
         <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource SmallText}">Scout Name</TextBlock>
         <TextBox Grid.Row="2" Grid.Column="1" Name="OName" Style="{StaticResource InputBox}"></TextBox>
+        <Button Grid.Row="2" Grid.Column="2" Style="{StaticResource SmallBtn}" ButtonBase.Click="BtnAddBill_click">New Bill</Button>
         <DataGrid Name="DGBills" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="6" Style="{StaticResource DGstyle}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Bill Date" Binding="{Binding Date}"/>

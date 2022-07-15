@@ -5,75 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Scout_Account_Tracker"
         mc:Ignorable="d"
+        Loaded="Window_Loaded"
         Title="NewEvent" Height="450" Width="800">
     <Grid Style="{StaticResource WinStyle}">
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3"/>
             <RowDefinition Height="8*"/>
-            <RowDefinition/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Style="{StaticResource TitleText}">Events</TextBlock>
-        <FlowDocumentScrollViewer Grid.Row="1">
-            <FlowDocument Name="DocEvent">
-                <Table Name="TabEvent">
-                    <Table.Columns>
-                        <TableColumn/>
-                        <TableColumn/>
-                        <TableColumn/>
-                        <TableColumn/>
-                        <TableColumn/>
-                        <TableColumn/>
-                    </Table.Columns>
-                    <TableRowGroup>
-                        <TableRow>
-                            <TableCell>
-                                <Paragraph Style="{StaticResource TableTitle}">
-                                    Name
-                                </Paragraph>
-                            </TableCell>
-                            <TableCell>
-                                <Paragraph Style="{StaticResource TableTitle}">
-                                    Location
-                                </Paragraph>
-                            </TableCell>
-                            <TableCell>
-                                <Paragraph Style="{StaticResource TableTitle}">
-                                    Type
-                                </Paragraph>
-                            </TableCell>
-                            <TableCell>
-                                <Paragraph Style="{StaticResource TableTitle}">
-                                    Start Time
-                                </Paragraph>
-                            </TableCell>
-                            <TableCell>
-                                <Paragraph Style="{StaticResource TableTitle}">
-                                    End Time
-                                </Paragraph>
-                            </TableCell>
-                            <TableCell>
-                                <Paragraph Style="{StaticResource TableTitle}">
-                                    Organiser
-                                </Paragraph>
-                            </TableCell>
-                        </TableRow>
-                    </TableRowGroup>
-                </Table>
-            </FlowDocument>
-        </FlowDocumentScrollViewer>
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Style="{StaticResource SmallBtn}">View Event</Button>
-            <Button Grid.Column="1" Style="{StaticResource SmallBtn}">Edit Event</Button>
-            <Button Grid.Column="2" Style="{StaticResource SmallBtn}">Add Scout</Button>
-            <Button Grid.Column="3" Style="{StaticResource SmallBtn}">Filter Events</Button>
-            <Button Grid.Column="4" Style="{StaticResource BtnReturn}">Return</Button>
-        </Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource TitleText}">Events</TextBlock>
+        <Rectangle Grid.Row="1" Fill="LightGray"></Rectangle>
+        <DataGrid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Name="DGEvent" Style="{StaticResource DGstyle}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Location" Binding="{Binding Loc}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Type" Binding="{Binding Type}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Start" Binding="{Binding Start}"></DataGridTextColumn>
+                <DataGridTextColumn Header="End" Binding="{Binding End}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Organiser" Binding="{Binding org}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Attendance" Binding="{Binding attn}" Width="1.2*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Hours" Binding="{Binding hours}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Revenue" Binding="{Binding rev}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button Grid.Column="0" Grid.Row="3" Style="{StaticResource SmallBtn}" ButtonBase.Click="btnAddEvent_click">Add Event</Button>
+        <Button Grid.Column="1" Grid.Row="3" Style="{StaticResource SmallBtn}" ButtonBase.Click="btnViewEvent_click">Edit Event</Button>
+        <Button Grid.Column="2" Grid.Row="3" Style="{StaticResource BtnReturn}" ButtonBase.Click="btnReturn_click">Return</Button>
     </Grid>
 </Window>
