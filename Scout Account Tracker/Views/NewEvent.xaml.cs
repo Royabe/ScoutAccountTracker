@@ -30,16 +30,16 @@ namespace Scout_Account_Tracker
         {
             if (EName.Text != "" && ELoc.Text != "" && EDate.Text != "" && EStart.Text != "" && EEnd.Text != "" && EOrg.Text != "") 
             {
+                //Creates DateTime objects
                 DateTime start = DateTime.Parse(EStart.Text);
                 DateTime end = DateTime.Parse(EEnd.Text);
                 DateTime Date = DateTime.Parse(EDate.Text);
                 DateTime Startdate = new DateTime(Date.Year,Date.Month,Date.Day,start.Hour,start.Minute,start.Second);
                 DateTime Enddate = new DateTime(Date.Year, Date.Month, Date.Day, end.Hour, end.Minute, end.Second);
                 Organiser org = await _context.organiser.FirstOrDefaultAsync(x => x.Name.ToLower() == EOrg.Text.ToLower());
+                //Adds event to database
                 if (org != null)
                 {
-                    //await _context.Database.ExecuteSqlRawAsync(
-                    //    $"Insert into dbo.events([Name],[Location],[Type],[Start],[End],[OrgID]) values('{EName.Text}','{ELoc.Text}','{EType.Text}','{Date.Month}/{Date.Day}/{Date.Year}','{Date.Month}/{Date.Day}/{Date.Year}','{org.ID}');");
                     _context.events.Add(new(EName.Text, ELoc.Text, EType.Text, Startdate, Enddate, org));
                     _context.SaveChanges();
                 }

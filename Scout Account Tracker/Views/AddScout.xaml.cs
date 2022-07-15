@@ -34,6 +34,7 @@ namespace Scout_Account_Tracker.Views
         }
         public async void OnLoaded(object sender, RoutedEventArgs e)
         {
+            //Creates the observable for the datatable
             _scouts = await _context.scouts.ToListAsync();
             foreach(Scout i in _scouts)
             {

@@ -35,6 +35,7 @@ namespace Scout_Account_Tracker.Views
         }
         public async void OnLoaded()
         {
+            //Creates the observable for the datatable
             Paylist = await _context.payment
                 .Where(x => x.bill.ID == bill.ID).ToListAsync();
             foreach (Payment i in Paylist)
@@ -44,6 +45,7 @@ namespace Scout_Account_Tracker.Views
         }
         public async void AddPay_click(object sender, RoutedEventArgs e)
         {
+            //Inserts the new payment into the database
             DateTime now = DateTime.Now;
             await _context.Database.ExecuteSqlRawAsync($"Insert into dbo.payment(Name,Value,Date,BillID) values('{PName.Text}','{PVal.Text}','{now.Month}/{now.Day}/{now.Year}','{bill.ID}');");
         }
@@ -61,6 +63,7 @@ namespace Scout_Account_Tracker.Views
         }
         public void BtnReturn_click(object sender, EventArgs e)
         {
+            //changes bill status dependent upon payment amount
             float paytot = 0;
             foreach(Payment i in Paylist)
             {

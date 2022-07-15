@@ -39,6 +39,7 @@ namespace Scout_Account_Tracker
             {
                 ScoutRecords.OrderBy(x => x.Date);
             }
+            //binds the observable to the datatable
             DGevents.ItemsSource = ScoutRecords;
             SName.Text = scout.Name;
             SGroup.Text = scout.group.Name;
@@ -46,12 +47,14 @@ namespace Scout_Account_Tracker
         }
         public async void OnLoaded()
         {
+            //Fetches the data for the observable
             eventlist = await _context.eventsTime
                 .Where(x=>x.scout.ID == thisScout.ID).ToListAsync();
             paymlist = await _context.payment
                 .Where(x => x.scout != null)
                 .Where(x => x.scout.ID == thisScout.ID).ToListAsync();
             payRates = await _context.payRate.ToListAsync();
+            //puts the data into the observable
             foreach(EventTime i in eventlist)
             {
                 ScoutRecords.Add(new paymentrecord(i.SpEvent.Name, i.Start, i.End, DateOnly.FromDateTime(i.Start), calcRevenue(i)));
@@ -61,6 +64,7 @@ namespace Scout_Account_Tracker
                 ScoutRecords.Add(new paymentrecord(i.Name, null, null, DateOnly.FromDateTime(i.Date), -1*i.Value));
             }
         }
+        //Calculates the revenue from an event for this scout
         public float calcRevenue(EventTime et)
         {
             double Duration = (et.End - et.Start).TotalHours;
@@ -92,6 +96,7 @@ namespace Scout_Account_Tracker
         }
         public void BtnReturn_click(object sender, EventArgs e) 
         {
+            //Updates the database before closing
             thisScout.Name = SName.Text;
             thisScout.group = _context.groups.FirstOrDefault(x=> x.Name == SGroup.Text);
             thisScout.DOB = DateTime.Parse(SDOB.Text);

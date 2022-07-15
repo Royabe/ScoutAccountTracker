@@ -34,6 +34,7 @@ namespace Scout_Account_Tracker
             OnLoaded();
             InitializeComponent();
             DGevents.ItemsSource = EventRecords;
+            //Displays editable text
             EName.Text = @event.Name;
             ELoc.Text = @event.Location;
             EType.Text = @event.Type;
@@ -41,6 +42,7 @@ namespace Scout_Account_Tracker
             EEnd.Text = @event.End.ToString();
             EOrg.Text = @event.Org.Name;
         }
+        //loads data onto table observable
         public async void OnLoaded()
         {
             eventlist = await _context.eventsTime
@@ -50,6 +52,7 @@ namespace Scout_Account_Tracker
                 EventRecords.Add(new Eventrecord(i.scout.Name, i.Start, i.End, calcRevenue(i)));
             }
         }
+        //Calculates revenue from an event
         public float calcRevenue(EventTime et)
         {
             double Duration = (et.End - et.Start).TotalHours;
@@ -81,6 +84,7 @@ namespace Scout_Account_Tracker
         }
         public void BtnReturn_click(object sender, EventArgs e)
         {
+            //Updates the event on the database
             thisEvent.Name = EName.Text;
             thisEvent.Location = ELoc.Text;
             thisEvent.Type = EType.Text;

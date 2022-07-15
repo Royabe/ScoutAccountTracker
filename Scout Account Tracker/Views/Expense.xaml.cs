@@ -30,6 +30,7 @@ namespace Scout_Account_Tracker.Views
         }
         public async void BtnAddExp_click(object sender, RoutedEventArgs e)
         {
+            //Inserts the new payment into the database
             DateTime now = DateTime.Now;
             await _context.Database.ExecuteSqlRawAsync($"Insert into dbo.payment(Name,Value,Date,ScoutID) values('{EName.Text}','{EVal.Text}','{now.Month}/{now.Day}/{now.Year}','{thisScout.ID}');");
         }

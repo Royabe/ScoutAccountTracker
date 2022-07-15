@@ -27,6 +27,7 @@ namespace Scout_Account_Tracker
         }
         public async void BtnAddOrg_click(object sender, RoutedEventArgs e)
         {
+            //Creates a new organiser
             await _context.Database.ExecuteSqlRawAsync($"Insert into dbo.organiser(Name) values('{OrgName.Text}');");
         }
         public void BtnReturn_click(object sender, RoutedEventArgs e)
